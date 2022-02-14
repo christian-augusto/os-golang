@@ -1,4 +1,4 @@
-package process
+package models
 
 type Process struct {
 	/*
@@ -27,7 +27,7 @@ type Process struct {
 	CurrentProcessQueueId uint8
 }
 
-func New(
+func NewProcess(
 	priority uint8,
 	processingTimeSeconds uint64,
 	qtdMemory uint64,
