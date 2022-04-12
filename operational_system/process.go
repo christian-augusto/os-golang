@@ -2,33 +2,35 @@ package operational_system
 
 type process struct {
 	/*
-		Real Time: 0
-		User: 1,2,3
+		REAL_TIME
+		USER
+		USER_2
+		USER_3
 	*/
-	Priority uint8
+	priority string
 
 	/*
 		Seconds
 	*/
-	ProcessingTimeSeconds int
+	processingTimeSeconds int
 
 	/*
 		Kb
 	*/
-	QtdMemory int
+	qtdMemory int
 
-	Id                  int
-	ArrivalTime         int
-	QtdPrinters         int
-	QtdScanners         int
-	QtdModems           int
-	QtdCds              int
-	ProcessedTime       int
-	CurrentProcessQueue string
+	id                  int
+	arrivalTime         int
+	qtdPrinters         int
+	qtdScanners         int
+	qtdModems           int
+	qtdCds              int
+	processedTime       int
+	currentProcessQueue string
 }
 
 func newProcess(
-	priority uint8,
+	priority string,
 	processingTimeSeconds int,
 	qtdMemory int,
 	id int,
@@ -41,22 +43,38 @@ func newProcess(
 	currentProcessQueue string,
 ) *process {
 	return &process{
-		Priority:              priority,
-		ProcessingTimeSeconds: processingTimeSeconds,
-		QtdMemory:             qtdMemory,
-		Id:                    id,
-		ArrivalTime:           arrivalTime,
-		QtdPrinters:           qtdPrinters,
-		QtdScanners:           qtdScanners,
-		QtdModems:             qtdModems,
-		QtdCds:                qtdCds,
-		ProcessedTime:         processedTime,
-		CurrentProcessQueue:   currentProcessQueue,
+		priority:              priority,
+		processingTimeSeconds: processingTimeSeconds,
+		qtdMemory:             qtdMemory,
+		id:                    id,
+		arrivalTime:           arrivalTime,
+		qtdPrinters:           qtdPrinters,
+		qtdScanners:           qtdScanners,
+		qtdModems:             qtdModems,
+		qtdCds:                qtdCds,
+		processedTime:         processedTime,
+		currentProcessQueue:   currentProcessQueue,
 	}
 }
 
+func (p *process) isRealTime() bool {
+	return p.priority == "REAL_TIME"
+}
+
+func (p *process) isUser() bool {
+	return p.priority == userPriority
+}
+
+func (p *process) isUser2() bool {
+	return p.priority == user2Priority
+}
+
+func (p *process) isUser3() bool {
+	return p.priority == user3Priority
+}
+
 func processCreator(
-	priority uint8,
+	priority string,
 	processingTimeSeconds int,
 	qtdMemory int,
 	id int,

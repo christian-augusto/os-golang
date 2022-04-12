@@ -14,11 +14,19 @@ func newProcessQueue() *processQueue {
 	}
 }
 
-func (p processQueue) insert(process *process) {
+func (p *processQueue) isEmpty() bool {
+	return p.size() == 0
+}
+
+func (p *processQueue) size() int {
+	return p.queue.Len()
+}
+
+func (p *processQueue) insert(process *process) {
 	p.queue.PushBack(process)
 }
 
-func (p processQueue) remove() *process {
+func (p *processQueue) remove() *process {
 	firstProcess := p.queue.Remove(p.queue.Front())
 
 	return firstProcess.(*process)
