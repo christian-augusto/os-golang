@@ -58,7 +58,7 @@ func newProcess(
 }
 
 func (p *process) isRealTime() bool {
-	return p.priority == "REAL_TIME"
+	return p.priority == realTimePriority
 }
 
 func (p *process) isUser() bool {
