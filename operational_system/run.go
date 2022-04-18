@@ -14,12 +14,16 @@ func Run() {
 
 	start()
 
+	utils.WaitSeconds(2)
+
+	setOsStatusTurningOff()
+
+	asyncProcess.Wait()
+
 	stop()
 }
 
-func start() error {
-	var err error
-
+func start() {
 	setOsStatusTurningOn()
 	fe = newProcessQueue()
 	ftr = newProcessQueue()
@@ -49,16 +53,6 @@ func start() error {
 			asyncProcess.Done()
 		}(i)
 	}
-
-	utils.WaitSeconds(10)
-
-	setOsStatusTurningOff()
-
-	asyncProcess.Wait()
-
-	stop()
-
-	return err
 }
 
 func stop() {
